@@ -1,10 +1,11 @@
 # visual-ts-module
 
-Test 
+ - Visual TS Game engine access from node module (npm service) plus examples 
+   in different variant.
 
-Visual TS Game engine access from node module (npm service) plus examples
+  First variant is  webpack , typescript project.
 
-
+Used webpack:
 ```
-tsc -p tsconfig.json.oo --outfile index.js
+npm run game
 ```
