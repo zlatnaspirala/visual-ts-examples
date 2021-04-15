@@ -44,7 +44,7 @@ let webPackModule = {
 
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "ts-loader", options: { allowTsInNodeModules: true }, exclude: [/node_modules/] },
+      { test: /\.tsx?$/, loader: "ts-loader", options: { allowTsInNodeModules: true } },
       {
         test: /\.(jpg|png)$/, loader: "file-loader", options: {
           name: '[name].[ext]',
