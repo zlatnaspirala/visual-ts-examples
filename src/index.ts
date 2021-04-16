@@ -8,4 +8,3 @@
 import * as visualTs from "visual-ts"
 
 console.info("visualTs is name of the object => " , visualTs)
-console.info("Test => " , visualTs.TextureComponent)
