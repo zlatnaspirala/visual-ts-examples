@@ -1,16 +1,12 @@
 /**
  * Import global css
  */
-
+// import STYLE from "../../styles.css");
 // require("./../../../style/animations.css");
-// require("./../../../style/styles.css");
-
 // import AppIcon from "../../../app-icon";
-// import GamePlayController from "../../../controllers/ioc-single-player";
 
 import * as V from "visual-ts"
-
-// import ViewPort from "visual-ts/src/libs/class/view-port";
+import ClientConfig from "./client-config";
 import Demo1 from "./myGame";
 
 /**
@@ -29,7 +25,8 @@ const gamesList: any[] = [
   gameInfo,
 ];
 
-const master = new V.IocSinglePlayerMode(gamesList);
+let injectedConfig: V.Interface.IClientConfig = new ClientConfig(gamesList);
+const master = new V.IocSinglePlayerMode(null, injectedConfig);
 // const appIcon: AppIcon = new AppIcon(master.get.Browser);
 master.singlton(Demo1, master.get.Starter);
 console.log("Starter : ", master.get.Demo1);

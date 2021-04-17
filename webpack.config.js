@@ -53,6 +53,8 @@ let webPackModule = {
     // new CleanWebpackPlugin(['build'], { /*exclude:  ['index.html']*/ }),
     new CopyWebpackPlugin({
       patterns: [
+      { from: './template.html', to: 'index.html'},
+      { from: './styles.css', to: 'style/styles.css'},
       { from: './externals/hack-timer.js', to: 'externals/hack-timer.js'},
       { from: './externals/drag.ts', to: 'externals/drag.ts' },
       { from: './externals/hack-timer-worker.js', to: 'externals/hack-timer-worker.js' },
@@ -60,10 +62,10 @@ let webPackModule = {
       { from: './externals/worker.js', to: 'worker.js' },
       { from: './externals/offline.html', to: 'offline.html' },
       { from: './externals/adapter.js', to: 'externals/adapter.js' },
-      { from: "./src/add-element/ui/player-board.html", to: "templates/player-board.html"},
-      { from: "./src/add-element/ui/select-player.html", to: "templates/select-player.html"},
-      { from: "./src/add-element/ui/player-board.html", to: "templates/single-player-board.html"},
-      { from: "./src/add-element/ui/message-box.html", to: "templates/message-box.html"},
+      { from: "./src/ui/player-board.html", to: "templates/player-board.html"},
+      { from: "./src/ui/select-player.html", to: "templates/select-player.html"},
+      { from: "./src/ui/player-board.html", to: "templates/single-player-board.html"},
+      { from: "./src/ui/message-box.html", to: "templates/message-box.html"},
 
       // { from: './externals/facebook/fb.js', to: 'externals/fb.js' },
       // { from: './src/manifest.web', to: 'manifest.web' },
