@@ -15,7 +15,7 @@ import * as V from "visual-ts"
  * About resource we use require
  */
 
-class Demo1 /*implements IGamePlayModel*/ {
+class Demo1 implements V.Interface.IGamePlayModelNoPlayer {
 
   public gameName: string = "Demo 1 - Add new element";
   public version: number = 1.0;
@@ -35,7 +35,7 @@ class Demo1 /*implements IGamePlayModel*/ {
     const root = this;
 
     console.log("App event");
-    root.createPlayer(true);
+    root.createMyElements(true);
     root.addGround();
 
   }
@@ -60,11 +60,11 @@ class Demo1 /*implements IGamePlayModel*/ {
 
       //  (newStaticElement.render as any).visualComponent.setVerticalTiles(2).
       //    setHorizontalTiles(1);
-       this.starter.AddNewBodies([newStaticElement] as worldElement);
+       this.starter.AddNewBodies([newStaticElement] as V.Type.worldElement);
 
   }
 
-  public createPlayer(addToScene: boolean) {
+  public createMyElements(addToScene: boolean) {
 
     const playerRadius = 50;
     this.myFirstGamePlayObject = Matter.Bodies.circle(

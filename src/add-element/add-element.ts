@@ -11,7 +11,7 @@
 import * as V from "visual-ts"
 
 // import ViewPort from "visual-ts/src/libs/class/view-port";
-import Demo1 from "./demo";
+import Demo1 from "./myGame";
 
 /**
  * plarformerGameInfo
@@ -22,14 +22,14 @@ import Demo1 from "./demo";
 
 const gameInfo = {
   name: "Demo 1",
-  title: "Create game with module visual-ts.",
+  title: "Create game with module visual-ts. ",
 };
 
 const gamesList: any[] = [
   gameInfo,
 ];
 
-const master = new V.IOC.singlePlayerIoc(gamesList);
+const master = new V.IocSinglePlayerMode(gamesList);
 // const appIcon: AppIcon = new AppIcon(master.get.Browser);
 master.singlton(Demo1, master.get.Starter);
 console.log("Starter : ", master.get.Demo1);

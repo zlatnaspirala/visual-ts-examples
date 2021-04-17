@@ -1,43 +1,16 @@
 
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
-// const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
-// const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-
-let internalConfig = {
-  createDocumentation: false,
-  stats: "errors-warnings"
-};
-
-/*
-let documentationPlugin = new TypedocWebpackPlugin({
-  out: './api-doc',
-  module: 'amd',
-  target: 'es5',
-  exclude: '/node_modules',
-  experimentalDecorators: true,
-  excludeExternals: true,
-  name: 'sn-theme',
-  mode: 'file',
-  theme: './sn-theme/',
-  includeDeclarations: false,
-  ignoreCompilerErrors: true,
-}); */
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 let webPackModule = {
   mode: "development",
   watch: true,
-  stats: internalConfig.stats,
-  entry: ["./src/index.ts"],
+  stats: false,
+  entry: ["./src/add-element/add-element.ts"],
   output: {
     filename: "visualts.engine.js",
     path: __dirname + "/build",
   },
-
-  // devtool: "inline-",
-
+  // devtool: "none",
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".json"]
   },
@@ -77,39 +50,26 @@ let webPackModule = {
   },
 
   plugins: [
-    // Make sure that the plugin is after any plugins that add images
     // new CleanWebpackPlugin(['build'], { /*exclude:  ['index.html']*/ }),
+    new CopyWebpackPlugin({
+      patterns: [
+      { from: './externals/hack-timer.js', to: 'externals/hack-timer.js'},
+      { from: './externals/drag.ts', to: 'externals/drag.ts' },
+      { from: './externals/hack-timer-worker.js', to: 'externals/hack-timer-worker.js' },
+      { from: './externals/cacheInit.ts', to: 'externals/cacheInit.ts' },
+      { from: './externals/worker.js', to: 'worker.js' },
+      { from: './externals/offline.html', to: 'offline.html' },
+      { from: './externals/adapter.js', to: 'externals/adapter.js' },
+      { from: "./src/add-element/ui/player-board.html", to: "templates/player-board.html"},
+      { from: "./src/add-element/ui/select-player.html", to: "templates/select-player.html"},
+      { from: "./src/add-element/ui/player-board.html", to: "templates/single-player-board.html"},
+      { from: "./src/add-element/ui/message-box.html", to: "templates/message-box.html"},
+
+      // { from: './externals/facebook/fb.js', to: 'externals/fb.js' },
+      // { from: './src/manifest.web', to: 'manifest.web' },
+    ]})
   ],
-  /*
-  optimization: {
-    splitChunks: {
-      chunks: 'async',
-      minSize: 30,
-      maxSize: 240000,
-      minChunks: 4,
-      maxAsyncRequests: 6,
-      maxInitialRequests: 4,
-      automaticNameDelimiter: '~',
-      name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 3,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
-  }
-  */
 
 };
-
-if (internalConfig.createDocumentation == true) {
-  webPackModule.plugins.push(documentationPlugin);
-}
 
 module.exports = webPackModule;
