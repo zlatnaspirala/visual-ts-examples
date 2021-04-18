@@ -24,7 +24,10 @@ let webPackModule = {
           outputPath: "./imgs"
         }
       },
-      // { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
       {
         test: /\.(ico)$/,
         use: {
@@ -54,7 +57,7 @@ let webPackModule = {
     new CopyWebpackPlugin({
       patterns: [
       { from: './template.html', to: 'index.html'},
-      { from: './styles.css', to: 'style/styles.css'},
+      { from: './style/styles.css', to: 'style/styles.css'},
       { from: './externals/hack-timer.js', to: 'externals/hack-timer.js'},
       { from: './externals/drag.ts', to: 'externals/drag.ts' },
       { from: './externals/hack-timer-worker.js', to: 'externals/hack-timer-worker.js' },
