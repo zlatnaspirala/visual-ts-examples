@@ -19,6 +19,8 @@ npm run game
 First visual-ts-module is abstract with no player.
 Just adding ball to the scene.
 
+![visualTSGameEngine-From-Node-Module](https://github.com/zlatnaspirala/visual-ts-module/blob/main/screenshot1.png)
+
 <pre>
 
 ├── package.json
