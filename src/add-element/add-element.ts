@@ -8,7 +8,7 @@ require("../../style/styles.css")
 // import AppIcon from "../../../app-icon";
 
 import * as V from "visual-ts"
-import ClientConfig from "./client-config";
+import AppConfig from "./app-config"
 import Demo1 from "./myGame";
 
 /**
@@ -27,7 +27,7 @@ const gamesList: any[] = [
   gameInfo,
 ];
 
-let injectedConfig: V.Interface.IClientConfig = new ClientConfig(gamesList);
+let injectedConfig: V.Interface.IClientConfig = new AppConfig(gamesList);
 const master = new V.IocSinglePlayerMode(null, injectedConfig);
 
 master.singlton(Demo1, master.get.Starter);
