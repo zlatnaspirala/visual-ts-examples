@@ -33,7 +33,7 @@ class ClientConfig {
     },
     {
       name: "dragging",
-      enabled: true,
+      enabled: false,
       scriptPath: "externals/drag.ts",
     },
     {

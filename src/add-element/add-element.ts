@@ -30,6 +30,15 @@ const gamesList: any[] = [
 let injectedConfig: V.Interface.IClientConfig = new AppConfig(gamesList);
 const master = new V.IocSinglePlayerMode(null, injectedConfig);
 
+const appIcons = [
+  require("../../icon/favicon.ico"),
+  require("../../icon/favicon-96x96.png"),
+  require("../../icon/android-icon.png"),
+  require("../../icon/apple-icon.png"),
+];
+
+const appIcon: V.AppIcon = new V.AppIcon(master.get.Browser, appIcons);
+
 master.singlton(Demo1, master.get.Starter);
 console.info("One time instance creation with master.singlton !");
 console.info("The object `master.get.Demo1` is constructed intro ioc controller and represent real instance object Access with => ",

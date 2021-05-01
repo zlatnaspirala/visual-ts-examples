@@ -9,6 +9,11 @@
 
 import * as V from "visual-ts"
 
-console.info("===============================")
-console.info("V is alias for visualTs => " , V)
-console.info("===============================")
+console.info("===============================");
+console.info("V is alias for visualTs => " , V);
+console.info("===============================");
+
+/**
+ * Make it global
+ */
+(window as any).V = V;

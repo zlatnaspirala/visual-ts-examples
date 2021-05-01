@@ -1,5 +1,5 @@
 
-import ClientConfig from "../client-config";
+import { ClientConfig } from "visual-ts";
 
 /**
  * ClientConfig is config file for whole client part of application.

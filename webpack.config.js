@@ -5,7 +5,7 @@ let webPackModule = {
   mode: "development",
   watch: true,
   stats: false,
-  entry: ["./src/add-element/add-element.ts"],
+  entry: ["./src/from-zero/index.ts"], // ["./src/add-element/add-element.ts"]
   output: {
     filename: "visualts.engine.js",
     path: __dirname + "/build",
