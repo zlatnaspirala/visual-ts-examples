@@ -4,7 +4,7 @@
    in different variant.
    First variant is webpack packing, typescript project.
 
-## Installatioin
+## Installation
 
 ```
  npm i
@@ -21,7 +21,13 @@ Just adding ball to the scene.
 ![visualTSGameEngine-From-Node-Module](https://github.com/zlatnaspirala/visual-ts-module/blob/main/screenshot1.png)
 
 
+## Webpack Entry
+ - from-zero     - Build clear library
+ - add-element   - Tutorial
+
+
 ## CodePen demo live links:
+
 https://codepen.io/zlatnaspirala/pen/NWdZJQJ
 
 
