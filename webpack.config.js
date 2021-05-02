@@ -5,9 +5,9 @@ let webPackModule = {
   mode: "development",
   watch: true,
   stats: false,
-  entry: ["./src/from-zero/index.ts"], // ["./src/add-element/add-element.ts"]
+  entry: [ "./src/sprite-animation/sprite-animation.ts"], // , "./src/from-zero/index.ts", "./src/add-element/add-element.ts"],
   output: {
-    filename: "visualts.engine.js",
+    filename: 'visualts.engine.js',
     path: __dirname + "/build",
   },
   // devtool: "none",
@@ -19,10 +19,18 @@ let webPackModule = {
     rules: [
       { test: /\.tsx?$/, loader: "ts-loader", options: { allowTsInNodeModules: true } },
       {
-        test: /\.(jpg|png)$/, loader: "file-loader", options: {
-          name: '[name].[ext]',
-          outputPath: "./imgs"
-        }
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name(resourcePath, resourceQuery) {
+            // `resourcePath` - `/absolute/path/to/file.js`
+            // `resourceQuery` - `?foo=bar`
+            // if (process.env.NODE_ENV === 'development') {
+              return './imgs/' + '[name].[ext]';
+            // }
+            // return '[contenthash].[ext]';
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -53,7 +61,6 @@ let webPackModule = {
   },
 
   plugins: [
-    // new CleanWebpackPlugin(['build'], { /*exclude:  ['index.html']*/ }),
     new CopyWebpackPlugin({
       patterns: [
       { from: './template.html', to: 'index.html'},

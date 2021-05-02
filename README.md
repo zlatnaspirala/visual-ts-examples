@@ -18,22 +18,18 @@ npm run game
 First visual-ts-module is abstract with no player.
 Just adding ball to the scene.
 
-![visualTSGameEngine-From-Node-Module](https://github.com/zlatnaspirala/visual-ts-module/blob/main/screenshot1.png)
-
-
 ## Webpack Entry
  - from-zero     - Build clear library
+
  - add-element   - Tutorial
+   https://codepen.io/zlatnaspirala/pen/NWdZJQJ
+   ![visualTSGameEngine-From-Node-Module](https://github.com/zlatnaspirala/visual-ts-module/blob/main/screenshot1.png)
 
-
-## CodePen demo live links:
-
-https://codepen.io/zlatnaspirala/pen/NWdZJQJ
-
+ - Sprite Animation
+   ![Sprite-Animation](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/sprite-speed-tiles.gif)
 
 
 <pre>
-
 ├── package.json
 ├── package-lock.json
 ├── webpack.config.js
