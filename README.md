@@ -22,10 +22,15 @@ Just adding ball to the scene.
  - from-zero     - Build clear library
 
  - add-element   - Tutorial
+
    https://codepen.io/zlatnaspirala/pen/NWdZJQJ
+
    ![visualTSGameEngine-From-Node-Module](https://github.com/zlatnaspirala/visual-ts-module/blob/main/screenshot1.png)
 
  - Sprite Animation
+
+   https://codepen.io/zlatnaspirala/pen/WNRVRQM?editors=1010
+
    ![Sprite-Animation](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/sprite-speed-tiles.gif)
 
 

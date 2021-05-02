@@ -1,6 +1,6 @@
 {
   "name": "test-npm-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visual TS Game engine, how to use it from NPM service",
   "main": "index.ts",
   "scripts": {

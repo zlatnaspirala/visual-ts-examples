@@ -7,7 +7,7 @@ let webPackModule = {
   stats: false,
   entry: [ "./src/sprite-animation/sprite-animation.ts"], // , "./src/from-zero/index.ts", "./src/add-element/add-element.ts"],
   output: {
-    filename: 'visualts.engine.js',
+    filename: 'sprite.visualts.engine.js',
     path: __dirname + "/build",
   },
   // devtool: "none",
