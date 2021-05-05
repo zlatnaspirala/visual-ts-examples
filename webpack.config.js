@@ -5,9 +5,11 @@ let webPackModule = {
   mode: "development",
   watch: true,
   stats: false,
-  entry: [ "./src/sprite-animation/sprite-animation.ts"], // , "./src/from-zero/index.ts", "./src/add-element/add-element.ts"],
+  entry:  [ "./src/generators/generators.ts"], 
+  // [ "./src/sprite-animation/sprite-animation.ts"], 
+  // , "./src/from-zero/index.ts", "./src/add-element/add-element.ts"],
   output: {
-    filename: 'sprite.visualts.engine.js',
+    filename: 'demo.visualts.engine.js',
     path: __dirname + "/build",
   },
   // devtool: "none",
