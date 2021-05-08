@@ -1,64 +1,80 @@
 
 import * as V from "visual-ts";
 
-/**
- * @author Nikola Lukic
- * @class Generator example
- */
-
-class GeneratorsDemo2 {
+class GeneratorsDemo3 {
 
   public gameName: string = "Demo 1 - Add sprite objects with generator.";
   public version: number = 1.0;
   public playerCategory = 0x0002;
   public staticCategory = 0x0004;
   public starter: V.Starter;
-
   public generatorOfCollecions = [];
+  public isStreamLoaded = false;
+  public broadcaster;
+  private mediaDom = null;
 
   constructor(starter: V.Starter) {
     this.starter = starter;
+    this.broadcaster = starter.ioc.get.Broadcaster;
+  }
+
+  private getStream() {
+    var myInstance = this;
+    window.addEventListener("stream-loaded", function (e: CustomEvent) {
+      try {
+        let mediaDom = V.System.byId(e.detail.data.streamId);
+        mediaDom = mediaDom.getElementsByTagName("video")[0];
+        myInstance.mediaDom = mediaDom;
+        /**
+         * @description
+         * Determinate local or not
+         */
+        if (myInstance.broadcaster.connection.userid === e.detail.data.userId) {
+          myInstance.isStreamLoaded = true;
+          myInstance.createMySprite({
+            pos: {
+              x: 400,
+              y: 300,
+            }
+          })
+          console.log("Stream added.");
+        }
+    } catch (err) { console.error("Very bad", err); }
+    });
   }
 
   public attachAppEvents() {
     const root = this;
 
-    let spriteOptions = {
-      delay: 1,
-      pos: {
-        x: 400,
-        y: 300,
-      },
-      tile: {
-        x: 1,
-        y: 1,
-      },
-    };
-    root.createMySprite(spriteOptions);
-    /*
-    spriteOptions = {
-      delay: 10,
-      pos: {
-        x: 400,
-        y: 200,
-      },
-      tile: {
-        x: 1,
-        y: 1,
-      },
-    };
-    root.createMySprite(spriteOptions); */
+    this.getStream();
+    const newStaticElement: V.Type.worldElement = V.Matter.Bodies.rectangle(
+      350 , 400, 300, 100,
+      {
+        isStatic: true,
+        label: "enjoy",
+        render: {
+          visualComponent: new V.TextComponent("Please allow webcam access.", {
+            color: "red",
+            size: "20px"
+        }),
+          sprite: {
+            olala: true,
+          },
+        } as any | Matter.IBodyRenderOptions,
+      });
+    newStaticElement.collisionFilter.group = -1;
+    this.starter.AddNewBodies([newStaticElement] as V.Type.worldElement);
+
 
     root.addGround();
 
     V.Matter.Events.on(
       this.starter.getEngine(),
       "beforeUpdate",
-      function (event) {
+      function () {
         root.generatorOfCollecions.forEach((element) => {
           element.counter.getValue();
         });
-
       }
     );
 
@@ -139,19 +155,19 @@ class GeneratorsDemo2 {
    */
   public createMySprite(spriteOptions: any) {
 
-    const playerRadius = 50;
+    const playerRadius = 30;
     // tslint:disable-next-line:prefer-const
     let newParamsElement = {
       x: spriteOptions.pos.x,
       y: spriteOptions.pos.y,
-      w: 50,
-      h: 50,
+      w: 30,
+      h: 30,
       playerRadius: playerRadius,
       arg2: {
         label: "mySprite",
         density: 0.0005,
         friction: 0.01,
-        frictionAir: 0.06,
+        frictionAir: 0.01,
         restitution: 0.3,
         ground: true,
         jumpCD: 0,
@@ -160,10 +176,10 @@ class GeneratorsDemo2 {
           category: this.playerCategory,
         } as any,
         render: { 
-          visualComponent: new V.SpriteTextureComponent(
+          visualComponent: new V.TextureStreamComponent(
             "explosion",
             require("../imgs/explosion/explosion.png").default,
-            ({ byX: 4, byY: 4 } as any),
+            this.mediaDom
           ),
           fillStyle: "blue",
           sprite: {
@@ -173,23 +189,26 @@ class GeneratorsDemo2 {
         }
     }};
 
-    console.info("My generated sprite body created from 'dead'.");
+    console.info("My generated sprite body created from 'dead.");
     this.generatorOfCollecions.push(new V.Generator({
       genType: "rect",
       emit: [
-        { force: { x: 0.01 , y: -0.001 }},
-        { force: { x: -0.01 , y: -0.001 }},
+        { force: { x: 0.02 , y: -0.008 }, initDelay: 200 },
+        { force: { x: -0.02 , y: -0.008 }, initDelay: 400 },
+        { force: { x: 0.02 , y: -0.02 }, initDelay: 600 },
+        { force: { x: -0.02 , y: -0.02 }, initDelay: 800 },
       ],
       delayForce: [
-        { delta: 20, force: { x: 0.01 , y: 0.0 }},
-        { delta: 20, force: { x: -0.01 , y: 0.0 }},
+        { delta: 1000, force: { x: -0.03 , y: 0.0 }},
+        { delta: 1000, force: { x: 0.03 , y: 0.0 }},
       ],
       counter: new V.NMath.Counter(0, 1, 1, "REPEAT"),
       newParamsElement: newParamsElement,
       starter: this.starter,
-      destroyAfter: 3000
+      destroyAfter: 31000
     }));
 
+    // this.generatorOfCollecions[this.generatorOfCollecions.length - 1].counter.setDelay(1);
   }
 
   protected destroyGamePlay() {
@@ -198,4 +217,4 @@ class GeneratorsDemo2 {
   }
 
 }
-export default GeneratorsDemo2;
+export default GeneratorsDemo3;

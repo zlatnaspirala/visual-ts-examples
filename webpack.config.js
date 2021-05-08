@@ -67,6 +67,8 @@ let webPackModule = {
       patterns: [
       { from: './template.html', to: 'index.html'},
       { from: './style/styles.css', to: 'style/styles.css'},
+      { from: './style/broadcaster.css', to: 'styles/broadcaster.css' },
+      { from: './style/getHTMLMediaElement.css', to: 'styles/getHTMLMediaElement.css' },
       { from: './externals/hack-timer.js', to: 'externals/hack-timer.js'},
       { from: './externals/drag.ts', to: 'externals/drag.ts' },
       { from: './externals/hack-timer-worker.js', to: 'externals/hack-timer-worker.js' },
@@ -78,7 +80,14 @@ let webPackModule = {
       { from: "./src/ui/select-player.html", to: "templates/select-player.html"},
       { from: "./src/ui/player-board.html", to: "templates/single-player-board.html"},
       { from: "./src/ui/message-box.html", to: "templates/message-box.html"},
-
+      { from: 'src/html-components/register.html', to: 'templates/register.html' },
+      { from: 'src/html-components/login.html', to: 'templates/login.html' },
+      { from: 'src/html-components/user-profile.html', to: 'templates/user-profile.html' },
+      { from: './src/html-components/store.html', to: 'templates/store.html' },
+      { from: './src/html-components/games-list.html', to: 'templates/games-list.html' },
+      { from: './src/html-components/video-conference.html',  to: 'templates/video-conference.html' },
+      { from: './src/html-components/broadcaster.html', to: 'templates/broadcaster.html' },
+      { from: "./src/html-components/coordinator.html", to: "templates/coordinator.html" },
       // { from: './externals/facebook/fb.js', to: 'externals/fb.js' },
       // { from: './src/manifest.web', to: 'manifest.web' },
     ]})

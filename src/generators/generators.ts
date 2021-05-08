@@ -5,8 +5,11 @@ require("/style/styles.css");
  
 
 import * as V from "visual-ts";
-import GeneratorsDemos from "./demo";
+import AppConfig from "./app-config";
+import GeneratorsDemo1 from "./demo";
 import GeneratorsDemo2 from "./demo2";
+import GeneratorsDemo3 from "./demo3";
+import GeneratorsDemo4 from "./demo4";
 
 /**
  * Put any parameters here.
@@ -20,7 +23,7 @@ const gamesList: any[] = [
   gameInfo,
 ];
 
-const master = new V.IocSinglePlayerMode(gamesList);
+var master: V.IocMultiPlayerMode | V.IocSinglePlayerMode = new V.IocSinglePlayerMode(gamesList);
 
 const appIcons = [
   require("/icon/favicon.ico").default,
@@ -30,28 +33,62 @@ const appIcons = [
 ];
 const appIcon: V.AppIcon = new V.AppIcon(master.get.Browser, appIcons);
 
-
-master.singlton(GeneratorsDemos, master.get.Starter);
-master.get.GeneratorsDemos.attachAppEvents();
-console.log("Starter : ", master.get.GeneratorsDemos);
-
+master.singlton(GeneratorsDemo1, master.get.Starter);
+master.get.GeneratorsDemo1.attachAppEvents();
+console.log("Starter : ", master.get.GeneratorsDemo1);
 
 /**
  * Make it global for fast access in console testing.
  * (window as any).platformer = master.get.GamePlay;
  */
 (window as any).master = master;
-(window as any).generatorsDemos = master.get.GeneratorsDemos;
+(window as any).GeneratorsDemo1 = master.get.GeneratorsDemo1;
+
 
 var CURENT_SCENE = 0;
+let masterNet = null;
 
 window.addEventListener("click", function(event) {
 
   if (CURENT_SCENE === 0) {
-    CURENT_SCENE = 1;
-    master.get.GeneratorsDemos.destroyGamePlay()
+    CURENT_SCENE++;
+
+    master.get.GeneratorsDemo1.destroyGamePlay()
+
     master.singlton(GeneratorsDemo2, master.get.Starter);
     master.get.GeneratorsDemo2.attachAppEvents();
+  } else if (CURENT_SCENE === 1) {
+    CURENT_SCENE++;
+    master.get.GeneratorsDemo2.destroyGamePlay()
+    master.get.ViewPort.canvasDom.style.display = 'none';
+
+    let injectedConfig = new AppConfig(gamesList);
+    masterNet = new V.IocMultiPlayerMode(null, injectedConfig);
+    masterNet.singlton(GeneratorsDemo3, masterNet.get.Starter);
+    (window as any).masterNet = masterNet;
+    masterNet.get.GeneratorsDemo3.attachAppEvents();
+
+  } else if (CURENT_SCENE === 3) {
+
+    CURENT_SCENE++;
+
+     /**
+     * @description
+     * Destroy world elements and 
+     * Create new master `masterNet` with multiPlayer add on.
+     * We need to hide canvas dom element of master program.
+     */
+    masterNet.get.GeneratorsDemo3.destroyGamePlay()
+    // masterNet.get.GeneratorsDemo3.broadcaster.connection.close()
+
+    masterNet.singlton(GeneratorsDemo4, masterNet.get.Starter);
+    masterNet.get.GeneratorsDemo4.attachAppEvents();
+
+    
+    // CURENT_SCENE = 0;
+
+  } else {
+    CURENT_SCENE++;
   }
 
 });

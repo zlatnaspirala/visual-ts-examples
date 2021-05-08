@@ -3,17 +3,11 @@ import * as V from "visual-ts";
 
 /**
  * @author Nikola Lukic
- * @class Sprite Animation tutorial
- * @param Starter
- * @description This is game logic part
- * we stil use class based methodology.
- * About resource we use require
- * I use images from add-element folder.
- * This is demo but for real release this
- * is bad praticle.
+ * @description 
+ * Generator class usage examples.
  */
 
-class GeneratorsDemos {
+class GeneratorsDemo1 {
 
   public gameName: string = "Demo 1 - Add sprite objects with generator.";
   public version: number = 1.0;
@@ -75,26 +69,9 @@ class GeneratorsDemos {
       this.starter.getEngine(),
       "beforeUpdate",
       function (event) {
-      /** Use to follow next demo
-        if (root.player) {
-          Matter.Body.setAngle(root.player, -Math.PI * 0);
-          // Matter.Body.setAngle(root.enemys[0] as Matter.Body, -Math.PI * 0);
-
-          Matter.Bounds.shift(root.starter.getRender().bounds, {
-            x:
-              root.player.position.x -
-              root.starter.getRender().options.width / 1.5,
-            y:
-              root.player.position.y -
-              root.starter.getRender().options.height / 1.5,
-          });
-
-        } */
-
         root.generatorOfCollecions.forEach((element) => {
           element.counter.getValue();
         });
-
       }
     );
 
@@ -128,7 +105,6 @@ class GeneratorsDemos {
    * @description How to create sprite
    * with different options
    */
-
   public createMySprite(spriteOptions: any) {
 
     const playerRadius = 50;
@@ -165,39 +141,7 @@ class GeneratorsDemos {
         }
     }};
 
-    // myObject.collisionFilter.group = -1;
-    // (myObject as any).render.visualComponent.seqFrameX.setDelay(spriteOptions.delay);
-     // (myObject.render as any).visualComponent.setVerticalTiles(spriteOptions.tile.x).
-      // setHorizontalTiles(spriteOptions.tile.y);
-    // (myObject.render as any).visualComponent.keepAspectRatio = true;
-    /**
-     *     this.generatorOfCollecions = new Generator({
-      genType: worldElementType.RECT,
-      emit: [
-        { force: { x: 0.02 , y: -0.01 }},
-        { force: { x: -0.02 , y: -0.01 }},
-        { force: { x: 0.02 , y: -0.01 }},
-        { force: { x: -0.01 , y: -0.02 }},
-        { force: { x: 0.01 , y: -0.02 }},
-        { force: { x: -0.01 , y: -0.02 }}
-      ],
-      delayForce: [
-        { delta: 500, force: { x: -0.02 , y: -0.01 }},
-        { delta: 1500, force: { x: 0.02 , y: -0.02 }},
-        { delta: 2000, force: { x: -0.02 , y: -0.01 }},
-        { delta: 500, force: { x: -0.03 , y: -0.01 }},
-        { delta: 1500, force: { x: 0.03 , y: -0.02 }},
-        { delta: 2000, force: { x: -0.03 , y: -0.01 }}
-      ],
-      counter: new Counter(0, 1, 1, "REPEAT"),
-      newParamsElement: newParamsElement,
-      starter: this.starter,
-      destroyAfter: 3000
-    });
-     */
-
-    console.info("my generated sprite body created from 'dead'.");
-
+    console.info("My generated sprite body created from 'dead'.");
     this.generatorOfCollecions.push( new V.Generator({
       genType: "rect", // V.Type.worldElementType.RECT,
       emit: [1],
@@ -217,4 +161,4 @@ class GeneratorsDemos {
   }
 
 }
-export default GeneratorsDemos;
+export default GeneratorsDemo1;
