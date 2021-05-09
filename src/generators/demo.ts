@@ -63,6 +63,42 @@ class GeneratorsDemo1 {
     };
     root.createMySprite(spriteOptions);
 
+    const newStaticElement: V.Type.worldElement = V.Matter.Bodies.rectangle(
+      350 , 400, 350, 100,
+      {
+        isStatic: true,
+        label: "enjoy",
+        render: {
+          visualComponent: new V.TextComponent("Click anywhere for next demo", {
+            color: "red",
+            size: "22px"
+        }),
+          sprite: {
+            olala: true,
+          },
+        } as any | Matter.IBodyRenderOptions,
+      });
+    newStaticElement.collisionFilter.group = -1;
+    this.starter.AddNewBodies([newStaticElement] as V.Type.worldElement);
+
+    const newStaticElement2: V.Type.worldElement = V.Matter.Bodies.rectangle(
+      350 , 500, 500, 100,
+      {
+        isStatic: true,
+        label: "enjoy",
+        render: {
+          visualComponent: new V.TextComponent("Class SpriteTextureComponent example", {
+            color: "orange",
+            size: "20px"
+        }),
+          sprite: {
+            olala: true,
+          },
+        } as any | Matter.IBodyRenderOptions,
+      });
+    newStaticElement2.collisionFilter.group = -1;
+    this.starter.AddNewBodies([newStaticElement2] as V.Type.worldElement);
+
     root.addGround();
 
     V.Matter.Events.on(

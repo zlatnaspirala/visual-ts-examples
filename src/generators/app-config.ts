@@ -15,7 +15,11 @@ class AppConfig extends ClientConfig {
   // Default is false we need to setup
   public getBroadcastAutoConnect(): boolean {
     return true;
-   }
+  }
+
+  public getDomain() {
+    return "maximumroulette.com"
+  }
 
 }
 export default AppConfig;

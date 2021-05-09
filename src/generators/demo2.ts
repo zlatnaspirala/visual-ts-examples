@@ -13,7 +13,7 @@ class GeneratorsDemo2 {
   public playerCategory = 0x0002;
   public staticCategory = 0x0004;
   public starter: V.Starter;
-
+  public localWebcamStream = null;
   public generatorOfCollecions = [];
 
   constructor(starter: V.Starter) {
@@ -23,31 +23,63 @@ class GeneratorsDemo2 {
   public attachAppEvents() {
     const root = this;
 
-    let spriteOptions = {
-      delay: 1,
-      pos: {
-        x: 400,
-        y: 300,
-      },
-      tile: {
-        x: 1,
-        y: 1,
-      },
-    };
-    root.createMySprite(spriteOptions);
-    /*
-    spriteOptions = {
-      delay: 10,
-      pos: {
-        x: 400,
-        y: 200,
-      },
-      tile: {
-        x: 1,
-        y: 1,
-      },
-    };
-    root.createMySprite(spriteOptions); */
+    window.addEventListener("local-stream-loaded", function (e: CustomEvent) {
+      console.log("DETAILS => ", e)
+      var videoDom = document.getElementsByTagName("video")[0];
+      videoDom.play();
+      root.localWebcamStream = e.detail.data.stream
+      let spriteOptions = {
+        stream: videoDom,
+        pos: {
+          x: 400,
+          y: 300,
+        },
+        tile: {
+          x: 1,
+          y: 1,
+        },
+      };
+      root.createMySprite(spriteOptions);
+    });
+
+    console.log(" Test acces local webcam 2")
+    this.starter.localDevice.getLocalWebcam();
+
+    const newStaticElement: V.Type.worldElement = V.Matter.Bodies.rectangle(
+      350 , 100, 500, 100,
+      {
+        isStatic: true,
+        label: "enjoy",
+        render: {
+          visualComponent: new V.TextComponent("Use webcam stream active in gamePlay.", {
+            color: "red",
+            size: "20px"
+        }),
+          sprite: {
+            olala: true,
+          },
+        } as any | Matter.IBodyRenderOptions,
+      });
+    newStaticElement.collisionFilter.group = -1;
+    this.starter.AddNewBodies([newStaticElement] as V.Type.worldElement);
+
+    const newStaticElement2: V.Type.worldElement = V.Matter.Bodies.rectangle(
+      350 , 150, 600, 100,
+      {
+        isStatic: true,
+        label: "enjoy",
+        render: {
+          visualComponent: new V.TextComponent("Example for TextureStreamComponent", {
+            color: "orange",
+            size: "20px"
+        }),
+          sprite: {
+            olala: true,
+          },
+        } as any | Matter.IBodyRenderOptions,
+      });
+    newStaticElement2.collisionFilter.group = -1;
+    this.starter.AddNewBodies([newStaticElement2] as V.Type.worldElement);
 
     root.addGround();
 
@@ -160,10 +192,11 @@ class GeneratorsDemo2 {
           category: this.playerCategory,
         } as any,
         render: { 
-          visualComponent: new V.SpriteTextureComponent(
+          visualComponent: new V.TextureStreamComponent(
             "explosion",
-            require("../imgs/explosion/explosion.png").default,
-            ({ byX: 4, byY: 4 } as any),
+            [require("../imgs/explosion/explosion.png").default,
+             require("../imgs/explosion/explosion.png").default],
+            spriteOptions.stream,
           ),
           fillStyle: "blue",
           sprite: {

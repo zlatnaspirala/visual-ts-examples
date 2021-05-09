@@ -60,15 +60,10 @@ window.addEventListener("click", function(event) {
   } else if (CURENT_SCENE === 1) {
     CURENT_SCENE++;
     master.get.GeneratorsDemo2.destroyGamePlay()
-    master.get.ViewPort.canvasDom.style.display = 'none';
+    master.singlton(GeneratorsDemo3, master.get.Starter);
+    master.get.GeneratorsDemo3.attachAppEvents();
 
-    let injectedConfig = new AppConfig(gamesList);
-    masterNet = new V.IocMultiPlayerMode(null, injectedConfig);
-    masterNet.singlton(GeneratorsDemo3, masterNet.get.Starter);
-    (window as any).masterNet = masterNet;
-    masterNet.get.GeneratorsDemo3.attachAppEvents();
-
-  } else if (CURENT_SCENE === 3) {
+  } else if (CURENT_SCENE === 2) {
 
     CURENT_SCENE++;
 
@@ -78,14 +73,29 @@ window.addEventListener("click", function(event) {
      * Create new master `masterNet` with multiPlayer add on.
      * We need to hide canvas dom element of master program.
      */
-    masterNet.get.GeneratorsDemo3.destroyGamePlay()
-    // masterNet.get.GeneratorsDemo3.broadcaster.connection.close()
+    master.get.GeneratorsDemo3.destroyGamePlay()
+    master.singlton(GeneratorsDemo4, master.get.Starter);
+    master.get.GeneratorsDemo4.attachAppEvents();
+    // CURENT_SCENE = 0;
 
+  } 
+  else if (CURENT_SCENE === 4) {
+    /*
+      CURENT_SCENE++;
+     /**
+     * @description
+     * Destroy world elements and 
+     * Create new master `masterNet` with multiPlayer add on.
+     * We need to hide canvas dom element of master program.
+    master.get.GeneratorsDemo3.destroyGamePlay()
+    master.get.ViewPort.canvasDom.style.display = 'none';
+    let injectedConfig = new AppConfig(gamesList);
+    masterNet = new V.IocMultiPlayerMode(null, injectedConfig);
+    (window as any).masterNet = masterNet;
+    // masterNet.get.GeneratorsDemo3.broadcaster.connection.close()
     masterNet.singlton(GeneratorsDemo4, masterNet.get.Starter);
     masterNet.get.GeneratorsDemo4.attachAppEvents();
-
-    
-    // CURENT_SCENE = 0;
+    // CURENT_SCENE = 0;  */
 
   } else {
     CURENT_SCENE++;

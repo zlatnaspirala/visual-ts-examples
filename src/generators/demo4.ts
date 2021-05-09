@@ -49,6 +49,7 @@ class GeneratorsDemo4 {
     this.mediaDom = mediaDom;
     this.isStreamLoaded = true;
           this.createMySprite({
+            stream: mediaDom,
             pos: {
               x: 400,
               y: 300,
@@ -59,10 +60,9 @@ class GeneratorsDemo4 {
 
   private getStream() {
     var myInstance = this;
-    window.addEventListener("stream-loaded", function (e: CustomEvent) {
+    window.addEventListener("local-stream-loaded", function (e: CustomEvent) {
       try {
-        let mediaDom = V.System.byId(e.detail.data.streamId);
-        mediaDom = mediaDom.getElementsByTagName("video")[0];
+        let mediaDom = document.getElementsByTagName("video")[0];
         myInstance.mediaDom = mediaDom;
         /**
          * @description
@@ -71,6 +71,7 @@ class GeneratorsDemo4 {
         if (myInstance.broadcaster.connection.userid === e.detail.data.userId) {
           myInstance.isStreamLoaded = true;
           myInstance.createMySprite({
+            stream: mediaDom,
             pos: {
               x: 400,
               y: 300,

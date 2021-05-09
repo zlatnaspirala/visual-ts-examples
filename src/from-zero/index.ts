@@ -10,7 +10,7 @@
 import * as V from "visual-ts"
 
 console.info("===============================");
-console.info("V is alias for visualTs => " , V);
+console.info("V is alias for visualTs => 0.0.1 " , V);
 console.info("===============================");
 
 /**
