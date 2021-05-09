@@ -33,13 +33,16 @@ Just adding ball to the scene.
 
    ![Sprite-Animation](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/sprite-speed-tiles.gif)
 
-  - TextureStreamComponent Example with webcam.
+  - SpriteTextureComponent Example.
 
     https://codepen.io/zlatnaspirala/pen/qBrdVdx
 
     ![Texture-Stream](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/generator-object-visula-ts-demo-1.png)
     
+  - TextureStreamComponent Example with webcam.
+
     https://codepen.io/zlatnaspirala/pen/wvJapLm
+
     ![Texture-Stream](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/generator-object-visula-ts-demo-2.png)
 
 
