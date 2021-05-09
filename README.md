@@ -35,10 +35,12 @@ Just adding ball to the scene.
 
   - TextureStreamComponent Example with webcam.
 
-    https://codepen.io/zlatnaspirala/pen/wvJapLm
-    
+    https://codepen.io/zlatnaspirala/pen/qBrdVdx
+
     ![Texture-Stream](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/generator-object-visula-ts-demo-1.png)
-     
+    
+    https://codepen.io/zlatnaspirala/pen/wvJapLm
+    ![Texture-Stream](https://github.com/zlatnaspirala/visual-ts/blob/master/nonproject-files/tutorial-resource/generator-object-visula-ts-demo-2.png)
 
 
 <pre>
